@@ -34,7 +34,27 @@ isPal :: [a] -> Bool
 isPal [] = True
 isPal [_] = True
 isPal xs = (xs == (reverseList' xs)) -- what specifically is wrong with these things?
-	
+	-- my idea: fxns need to be curried, somehow? I need to know what that really means though.
+
+---- so here are some solutions that ARE correct
+-- from http://www.haskell.org/haskellwiki/99_questions/Solutions/6
+isPal' :: (Eq a) => [a] -> Bool
+isPal' xs = xs == (reverse xs)
+
+isPal'' [] = True
+isPal'' [_] = True
+isPal'' xs = (head xs) == (last xs) && (isPal'' $ init $ tail xs) -- so the $, what does that do?
+
+-- this one I don't understand even line by line yet (2012.02.07)
+palThing :: (Eq a) => [a] -> Bool
+palThing xs = p [] xs xs
+	where p rev (x:xs) (_:_:ys) = p (x:rev) xs ys
+		  p rev (x:xs) [_] = rev == xs
+		  p rev xs [] = rev == xs
+-- whaaaaat
+
+
+
 
 
 

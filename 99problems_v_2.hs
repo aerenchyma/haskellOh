@@ -34,10 +34,10 @@ isPal :: [a] -> Bool
 isPal [] = True
 isPal [_] = True
 isPal xs = (xs == (reverseList' xs)) -- what specifically is wrong with these things?
-	-- my idea: fxns need to be curried, somehow? I need to know what that really means though.
+	-- A: improper use of what should be currying
 
----- so here are some solutions that ARE correct
--- from http://www.haskell.org/haskellwiki/99_questions/Solutions/6
+---- so here are some solutions that are more correct
+-- [from http://www.haskell.org/haskellwiki/99_questions/Solutions/6 + adapted]
 isPal' :: (Eq a) => [a] -> Bool
 isPal' xs = xs == (reverse xs)
 
@@ -51,7 +51,7 @@ palThing xs = p [] xs xs
 	where p rev (x:xs) (_:_:ys) = p (x:rev) xs ys
 		  p rev (x:xs) [_] = rev == xs
 		  p rev xs [] = rev == xs
--- huh.
+
 
 {-
 isPal (x:xs) = True
@@ -61,7 +61,7 @@ isPal (x:xs) = False
 	if reverseList' (x:xs) /= (x:xs)
 -}
 
---- OK, currying time.
+
 
 {-
 max 4 5
@@ -71,3 +71,5 @@ max 4 5
 
 -- putting a space between 2 things  == function application
 -}
+
+

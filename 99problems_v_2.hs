@@ -43,7 +43,7 @@ isPal' xs = xs == (reverse xs)
 
 isPal'' [] = True
 isPal'' [_] = True
-isPal'' xs = (head xs) == (last xs) && (isPal'' $ init $ tail xs) -- so the $, what does that do?
+isPal'' xs = (head xs) == (last xs) && (isPal'' $ init $ tail xs)
 
 -- this one should be gone through line by line.. (2012.02.07)
 palThing :: (Eq a) => [a] -> Bool

@@ -45,18 +45,13 @@ isPal'' [] = True
 isPal'' [_] = True
 isPal'' xs = (head xs) == (last xs) && (isPal'' $ init $ tail xs) -- so the $, what does that do?
 
--- this one I don't understand even line by line yet (2012.02.07)
+-- this one should be gone through line by line.. (2012.02.07)
 palThing :: (Eq a) => [a] -> Bool
 palThing xs = p [] xs xs
 	where p rev (x:xs) (_:_:ys) = p (x:rev) xs ys
 		  p rev (x:xs) [_] = rev == xs
 		  p rev xs [] = rev == xs
--- whaaaaat
-
-
-
-
-
+-- huh.
 
 {-
 isPal (x:xs) = True
@@ -64,4 +59,15 @@ isPal (x:xs) = True
 		reverseList' (x:xs) = (x:xs)
 isPal (x:xs) = False
 	if reverseList' (x:xs) /= (x:xs)
+-}
+
+--- OK, currying time.
+
+{-
+max 4 5
+--is the same as
+(max 4) 5
+-- and both have 'output' 5
+
+-- putting a space between 2 things  == function application
 -}
